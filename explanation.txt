@@ -1,0 +1,60 @@
+Hi everyone, this is my submission for the Country Information AI Agent assignment.
+
+In this project, I built an AI agent that answers country-related questions using the public REST Countries API.
+The agent is implemented with LangGraph, and follows a clear 3-step flow:
+
+Intent and field identification
+Tool invocation
+Answer synthesis
+Now I will quickly explain the architecture.
+
+First, in the intent identification step, the system reads the user question and extracts two things:
+
+The country name
+The requested fields, like capital, population, or currency
+Second, in the tool invocation step, the agent calls the REST Countries endpoint and fetches real country data.
+The tool layer normalizes the API response into a stable internal structure so downstream logic stays clean and maintainable.
+
+Third, in the answer synthesis step, the agent builds a grounded response using only tool output.
+If data is missing, it handles that gracefully.
+If the user question is invalid or no country is detected, it returns a clear error message instead of crashing.
+
+Now I will show a few live examples.
+
+Example 1:
+Question: What is the population of Germany?
+Expected behavior: It returns Germany and the population value.
+
+Example 2:
+Question: What currency does Japan use?
+Expected behavior: It returns Japan and JPY with currency name.
+
+Example 3:
+Question: What is the capital and population of Brazil?
+Expected behavior: It returns both capital and population.
+
+Now an invalid input example:
+Question: What is the capital?
+Expected behavior: The system says it could not identify a country.
+
+Now I will cover production-oriented design decisions.
+
+I kept the code modular with clear separation between graph flow, tool integration, models, and API entrypoint.
+I added defensive handling for HTTP errors, timeouts, and malformed JSON responses from the external API.
+I also documented known limitations and added deployment configuration for hosted testing.
+
+Constraint compliance is also complete:
+
+No authentication
+No database
+No embeddings
+No RAG
+Known limitations and trade-offs:
+
+Country extraction is heuristic, so very ambiguous phrasing can still fail
+The system currently resolves one main country per request
+It depends on availability of the external REST Countries service
+Finally, this project is deployed and can be tested directly using the hosted link in my README.
+The repository link and hosted endpoint are included as deliverables.
+
+Thank you.
