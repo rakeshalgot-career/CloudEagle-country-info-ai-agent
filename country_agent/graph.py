@@ -37,10 +37,20 @@ FIELD_KEYWORDS: dict[FieldName, tuple[str, ...]] = {
 }
 
 
+# _PREP_WORD: permissive match used after explicit prepositions (of/in/for, does X use).
+# Allows accented chars, spaces, apostrophes — safe because bounded by anchor words.
+_PREP_WORD = r"[\w\u00C0-\u024F][\w\u00C0-\u024F .\-']*?"
+
+# _PROPER_NOUN: a word that MUST start with an uppercase letter.
+# Uppercase range: A-Z plus Unicode Latin uppercase (À-Ö, Ø-Þ).
+# This prevents greedy matches of plain lowercase words like 'me', 'about', 'is'.
+_UPPER = r"[A-Z\u00C0-\u00D6\u00D8-\u00DE]"
+_PROPER_NOUN = rf"{_UPPER}[\w\u00C0-\u024F]*"
+
 COUNTRY_PATTERNS = [
-    re.compile(r"\b(?:of|in|for)\s+([a-zA-Z .\-']+?)\??$", re.IGNORECASE),
-    re.compile(r"\b(?:does|did)\s+([a-zA-Z .\-']+?)\s+use\b", re.IGNORECASE),
-    re.compile(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\??$"),
+    re.compile(rf"\b(?:of|in|for)\s+({_PREP_WORD})\??$", re.IGNORECASE | re.UNICODE),
+    re.compile(rf"\b(?:does|did)\s+({_PREP_WORD})\s+use\b", re.IGNORECASE | re.UNICODE),
+    re.compile(rf"\b({_PROPER_NOUN}(?:\s+{_PROPER_NOUN})*)\??$", re.UNICODE),
 ]
 
 
@@ -99,10 +109,9 @@ def _extract_country_name(question: str) -> str | None:
             if normalized:
                 return normalized
 
-    # Fallback: scan for any capitalized proper-noun candidate in the sentence.
-    # This handles phrasing like "What currency does Japan use?" where country
-    # is not sentence-final.
-    proper_nouns = re.findall(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\b", cleaned)
+    # Fallback: scan for sequences of proper-noun words (uppercase-initial) anywhere
+    # in the sentence. Covers "What currency does Japan use?" and similar phrasings.
+    proper_nouns = re.findall(rf"\b({_PROPER_NOUN}(?:\s+{_PROPER_NOUN})*)\b", cleaned, re.UNICODE)
     for candidate in reversed(proper_nouns):
         normalized = _normalize_country_candidate(candidate)
         if normalized:
