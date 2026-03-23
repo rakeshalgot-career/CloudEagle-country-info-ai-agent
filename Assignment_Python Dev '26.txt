@@ -1,0 +1,54 @@
+﻿Assignment: Country Information AI Agent
+Problem Statement
+Build an AI agent that answers questions about countries using public data.
+Example user questions:
+* “What is the population of Germany?”
+* “What currency does Japan use?”
+* “What is the capital and population of Brazil?”
+________________
+
+
+Data Source
+Use the public REST Countries API:
+https://restcountries.com/v3.1/name/{country}
+________________
+
+
+Technical Requirements
+* Use LangGraph (not a single prompt)
+* The agent must include:
+   * An intent / field identification step
+   * A tool invocation step
+   * An answer synthesis step
+
+   * The agent should be designed as if it were a production service
+________________
+
+
+Constraints
+   * No authentication
+   * No database
+   * No embeddings
+   * No RAG
+
+________________
+
+
+Expectations
+      * The system should return accurate, grounded answers
+      * It should handle invalid inputs and partial data gracefully
+      * The code should be structured and maintainable
+      * Design decisions should reflect how you would build this in a real production environment
+________________
+
+
+Deliverables
+      1. A GitHub repository with the implementation
+      2. A short video walkthrough explaining:
+      * Overall architecture
+      * Agent flow (with few examples)
+      * How the system would behave in production
+      * Known limitations and trade-offs
+      * Host it somewhere and give a link to directly test it 
+
+________________
