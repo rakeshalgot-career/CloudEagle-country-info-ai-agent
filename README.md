@@ -95,10 +95,11 @@ Environment variables:
 Deploy `app.py` to a simple FastAPI host (for example Render or Railway) and expose `/ask` plus `/health`.
 This repository is deployment-ready once environment and dependency setup are complete.
 
+
 ## Submission checklist
 
-- [ ] GitHub repository link: _add here_
-- [ ] Hosted API URL (direct test link): _add here_
+- [x] GitHub repository link: https://github.com/rakeshalgot-career/CloudEagle-country-info-ai-agent
+- [x] Hosted API URL (direct test link): https://cloudeagle-country-info-ai-agent.onrender.com/ask
 - [ ] Walkthrough video link: _add here_
 
 Video should cover:

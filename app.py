@@ -37,12 +37,19 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
 app = FastAPI(title="Country Info AI Agent", version="1.0.0", lifespan=lifespan)
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["GET", "POST"],
     allow_headers=["Content-Type"],
 )
+
+
+# Root endpoint for welcome message
+@app.get("/", response_class=None)
+def root():
+    return "Welcome to Cloudeagle country info ai"
 
 
 @app.get("/health")
