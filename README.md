@@ -118,8 +118,18 @@ This repository is deployment-ready once environment and dependency setup are co
 
 1. **GitHub repository** with the implementation:  
    https://github.com/rakeshalgot-career/CloudEagle-country-info-ai-agent
-2. **Hosted API URL (direct test link):**  
-   https://Cloudeagle-country-info-ai-agent-production.up.railway.app/ask
+2. **Hosted API Base URL:**  
+   https://Cloudeagle-country-info-ai-agent-production.up.railway.app
+   
+   - The `/ask` endpoint is **POST-only** and must be tested with a POST request (not by clicking in a browser). See example below:
+   
+   ```bash
+   curl -X POST "https://Cloudeagle-country-info-ai-agent-production.up.railway.app/ask" \
+     -H "Content-Type: application/json" \
+     -d '{"question":"What is the capital and population of Brazil?"}'
+   ```
+   
+   - The `/health` endpoint and `/docs` (Swagger UI) can be accessed directly in a browser.
 3. **Short video walkthrough** (add link here):
    _add here_
 
