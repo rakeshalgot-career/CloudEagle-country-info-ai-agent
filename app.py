@@ -47,7 +47,10 @@ app.add_middleware(
 
 
 # Root endpoint for welcome message
-@app.get("/", response_class=None)
+from fastapi.responses import PlainTextResponse
+
+# Root endpoint for welcome message
+@app.get("/", response_class=PlainTextResponse)
 def root():
     return "Welcome to Cloudeagle country info ai"
 
