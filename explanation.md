@@ -1,0 +1,163 @@
+---
+
+# 🎬 **VIDEO SCRIPT (Use This Directly)**
+
+---
+
+## 🎯 1. Introduction (0:00–0:15)
+
+“Hi, this is my implementation of the Country Information AI Agent.
+
+The goal of this system is to answer questions like population, capital, and currency of countries using the REST Countries API, while following a structured agent workflow using LangGraph.”
+
+
+---
+
+## 🏗️ 2. Overall Architecture (0:15–0:45)
+
+“This system is designed as a production-style service with three main layers:
+
+* **API Layer (FastAPI)** → handles incoming requests
+* **Agent Layer (LangGraph)** → manages the workflow
+* **Tool Layer (REST Countries API)** → fetches real data
+
+The entry point is a FastAPI server with an `/ask` endpoint that receives user questions and returns structured answers.”
+
+
+---
+
+## 🔄 3. Agent Flow (0:45–1:30)
+
+“The agent is implemented using LangGraph as a 3-step pipeline:
+
+### Step 1: Intent Identification
+
+The system extracts:
+
+* country name
+* requested fields like capital, population, or currency
+
+This is done using keyword matching and regex-based parsing.”
+
+
+---
+
+### Step 2: Tool Invocation
+
+“The agent calls the REST Countries API to fetch real data.
+
+The response is normalized into a structured format using a Pydantic model.”
+
+
+---
+
+### Step 3: Answer Synthesis
+
+“The system formats the final response based on requested fields, ensuring clean and readable output.”
+
+
+---
+
+### ✅ Example
+
+“For example:
+
+‘What is the capital and population of Brazil?’
+
+Flow:
+
+* Extract country → Brazil
+* Identify fields → capital, population
+* Call API
+* Return formatted response”
+
+---
+
+## ⚙️ 4. Production Behavior (1:30–2:00)
+
+“In production, this system behaves as a stateless API service:
+
+* Handles concurrent requests via FastAPI
+* Uses structured validation with Pydantic models
+* Includes error handling for:
+
+  * invalid country names
+  * API failures
+  * missing data
+
+It is designed to be lightweight, scalable, and maintainable.”
+
+
+---
+
+## ⚖️ 5. Limitations & Trade-offs (2:00–2:30)
+
+“Some limitations and trade-offs include:
+
+* Country extraction is rule-based, so it may fail for complex queries
+* No LLM is used, so reasoning is limited
+* Depends on external API availability
+
+However, this design ensures:
+
+* high reliability
+* low cost
+* deterministic behavior
+
+which is suitable for production systems.”
+
+---
+
+## 🌐 6. Hosting & Demo (2:30–2:50)
+
+“The application is deployed on **Railway**, ensuring it remains active without cold starts.
+
+You can test it using the public endpoint:
+
+👉 `/docs` for Swagger UI
+👉 `/ask` for API requests
+
+Example request:
+
+````json
+{
+  "question": "What is the currency of Japan?"
+}
+```”
+
+---
+
+## 🎯 7. Closing (2:50–3:00)
+
+“This project demonstrates how to build a structured AI agent using LangGraph with clean architecture and production-ready design principles.”
+
+---
+
+# 🎥 HOW TO RECORD (Important)
+
+- Open:
+  - Code (VS Code)  
+  - Swagger UI (`/docs`)  
+- Speak while:
+  - Showing flow  
+  - Running 1–2 examples  
+
+---
+
+# 🔥 BONUS (Say This If You Want to Impress)
+
+👉 Add this line:
+
+> “Although this version does not use an LLM, the architecture allows easy extension to LLM-based reasoning or RAG systems in the future.”
+
+---
+
+# 🚀 If You Want
+
+I can:
+- 🔥 Create a **perfect GitHub README for this**
+- 🔥 Help you **record like a pro (screen + voice tips)**
+- 🔥 Add **diagram slide (very powerful for interviews)**  
+
+Just tell me 👍
+````
