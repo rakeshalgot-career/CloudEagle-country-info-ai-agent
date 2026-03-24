@@ -1,3 +1,20 @@
+# Assignment Requirements & Constraints
+
+This project was built to satisfy the following assignment requirements:
+
+- Use the public REST Countries API: https://restcountries.com/v3.1/name/{country}
+- Use LangGraph (not a single prompt)
+- Agent must include:
+   - Intent/field identification step
+   - Tool invocation step
+   - Answer synthesis step
+- No authentication, no database, no embeddings, no RAG
+- The system should:
+   - Return accurate, grounded answers
+   - Handle invalid inputs and partial data gracefully
+   - Be structured and maintainable
+   - Reflect production-quality design decisions
+
 # Country Information AI Agent
 
 A production-style LangGraph agent that answers country questions using the public REST Countries API.
@@ -72,12 +89,13 @@ curl "http://127.0.0.1:8000/health"
 python cli.py
 ```
 
-## Production-oriented choices
+## Production-oriented choices & Constraints
 
 - Stable normalized model between external API and synthesis logic
 - Explicit state-based workflow with clear node responsibilities
 - Graceful fallback behavior for unknown countries and unavailable fields
 - Configurable API base URL and timeout by env vars
+- **No authentication, no database, no embeddings, no RAG** (per assignment constraints)
 
 Environment variables:
 
@@ -96,14 +114,18 @@ Deploy `app.py` to a simple FastAPI host (for example Render or Railway) and exp
 This repository is deployment-ready once environment and dependency setup are complete.
 
 
-## Submission checklist
+## Assignment Deliverables
 
-- [x] GitHub repository link: https://github.com/rakeshalgot-career/CloudEagle-country-info-ai-agent
-- [x] Hosted API URL (direct test link): https://cloudeagle-country-info-ai-agent.onrender.com/ask
-- [ ] Walkthrough video link: _add here_
+1. **GitHub repository** with the implementation:  
+   https://github.com/rakeshalgot-career/CloudEagle-country-info-ai-agent
+2. **Hosted API URL (direct test link):**  
+   https://Cloudeagle-country-info-ai-agent-production.up.railway.app/ask
+3. **Short video walkthrough** (add link here):
+   _add here_
 
-Video should cover:
-- Overall architecture (3-node LangGraph flow)
-- Live examples: population of Germany, currency of Japan, capital + population of Brazil
-- Production behavior: invalid input handling, partial data, service errors
+The video should cover:
+- Overall architecture
+- Agent flow (with a few examples)
+- How the system would behave in production
 - Known limitations and trade-offs
+- Direct test link to the hosted API
