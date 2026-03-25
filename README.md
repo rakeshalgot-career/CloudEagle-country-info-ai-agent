@@ -131,7 +131,7 @@ This repository is deployment-ready once environment and dependency setup are co
    
    - The `/health` endpoint and `/docs` (Swagger UI) can be accessed directly in a browser.
 3. **Short video walkthrough** (add link here):
-   _add here_
+   https://drive.google.com/file/d/1x1IjejBYSdTQJwq9Ghxwy3MJWKolomFv/view?usp=drivesdk
 
 The video should cover:
 - Overall architecture
